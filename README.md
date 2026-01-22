@@ -5,4 +5,4 @@ This is my course repository for OIM3640.
 ## About Me
 - Name: Allison Molendyk
 - Concentration: Business Analytics
-- Interests: Baking, Reading, Crossword Puzzles, Playing Volleyball, PLaying Golf
+- Interests: Baking, Reading, Crossword Puzzles, Volleyball, Golf
