@@ -1,16 +1,14 @@
-a = input("Enter an integer: ") # how to make sure input is an integer
-
-a = int(a)
-print(type(a))
+# a product would cost $100, how much tax do we pay?
 
 
-# check odd or even
-if a % 2 == 0:
-    print("Even")
-else:
-    print("Odd")
+product = 100 # in dollars
+tax_rate = 0.0625
+tax = product * tax_rate
+print(f'The tax for the product which costs ${product} is ${tax}.') # f-string
 
-a = 2
-1 + a # an expression, which evaluates to 3, but does not do anything with it
 
-print(1 + a) # a statement, which prints the result
+def calc_tax():
+    product = 100 
+    tax_rate = 0.0625
+    tax = product * tax_rate
+    print(f'The tax for the product which costs ${product} is ${tax}.')
