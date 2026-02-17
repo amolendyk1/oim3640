@@ -1,2 +1,2 @@
 # Week 4 
-  
+- One idea I had for an app is an app that can scan a file and it converts everything into a chosen theme. Most of the time, I have to go in and change everything into the correct font, color, and size that I want. Therefore, it would be nice to have it all done at once. 
