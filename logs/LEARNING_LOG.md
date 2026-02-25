@@ -5,3 +5,11 @@ What I didn't understand in the generated code:
 - I did not understand how to incorporate this feature into my app but I will do more research to learn how to achieve this. 
 What I learned:
 - From this experience, I learned that conversion apps have a lot of parts to it and are not as simple as I originally thought. 
+
+## 2026 February 25
+what I asked AI to do:
+- I asked AI to list currency conversion rates but I was unable to get accurate information. Therefore, I used google to look up the top 10 conversion rates.
+What I didn't understand in the generated code:
+- I did not understand what someone of the short hand country names were so I had to google that to understand which countnry it is.
+What I learned:
+- From this experience, I learned that there are a lot of country currency conversion rates so I simplified to only the top 10 rates. 
