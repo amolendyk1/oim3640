@@ -10,3 +10,11 @@ USD_to_MYR = 3.891
 USD_to_JPY = 156.492
 USD_to_CNY = 6.869
 
+# conversion rate equation from USD
+def currency_conversion_from_USD(amount, conversion_rate):
+    currency = amount * conversion_rate
+    return currency
+
+# Test 
+print(currency_conversion_from_USD(100, USD_to_EUR)) # should return 84.8
+
