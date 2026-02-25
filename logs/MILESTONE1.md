@@ -12,8 +12,8 @@
 
 # conversion rate equation from USD
 def currency_conversion_from_USD(amount, conversion_rate):
-    currency = amount * conversion_rate
-    return currency
+    - currency = amount * conversion_rate
+    - return currency
 
 # Test 
 print(currency_conversion_from_USD(100, USD_to_EUR)) # should return 84.8
