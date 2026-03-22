@@ -18,7 +18,7 @@ What I don't Know yet:
 - I am now doing an app called, Ally's top 15 currency convertor so my twist is that it will only be 10 countries that I have been to or that have symbolic meaning to me personally.
 - For the core features, I will be getting rid of the second, third, fourth features. I will have it so all 10 of the countries can be converted too and from each other. The conversion rates will not automatically update. 
 - new features:
-  - all 15 countries can be converted too and from each other 
+  - all 10 countries can be converted too and from each other 
   - feature where you can calculate total costs including change in currency and change in average consumer tax depending on country 
     - for example: $10 shirt in usd including tax to cost of that shirt in EUR including tax
 - Countries included:
