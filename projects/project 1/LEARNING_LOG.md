@@ -22,10 +22,10 @@ What I learned:
 
 ## 2026 March 20
 what I asked AI to do:
-- I asked AI if including a tax function or adding a country to country function is more important. 
+- I asked AI if including a tax function or adding a country to country function is more important. I then asked it to help fix the tax function that I wrote.
 
 What I didn't understand in the generated code:
-- I understood everything and this experience helped me simplfy my app.
+- I understood everything and this experience helped me simplify my app.
 
 What I learned:
 - I was running into complications while writing code and it started to get very complicated to have both of these functions in my code. I learned the since we are currently in the US, it is more important to have a tax feature.
@@ -33,7 +33,7 @@ What I learned:
 
 ## 2026 March 24
 what I asked AI to do:
-- I asked AI to finalize and make the code look more organized.
+- I asked AI to finalize and make the code look more organized. I asked it to create a menu option because I was struggling to create a functioning version.
 
 What I didn't understand in the generated code:
 - At first, I did not understand how to make it so it does not doulbe count tax. AI corrected this and explained it in a way so that it was easy to understand why my code was double counting it. 
