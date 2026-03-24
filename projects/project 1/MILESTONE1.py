@@ -1,5 +1,8 @@
+# -----------------------------
+# Ally's Top 10 Currency Converter
+# -----------------------------
 
-
+# Conversion rates from USD
 rates = { 
     "japan": 156.492,
     "london": 0.739,
@@ -11,8 +14,9 @@ rates = {
     "germany": 0.848,
     "united states": 1.0,
     "italy": 0.848
-}
+    }
 
+# Tax Rates
 tax = { 
     "japan": 0.10,
     "london": 0.20,
@@ -26,6 +30,7 @@ tax = {
     "italy": 0.22
 }
 
+# Functions
 def convert(amount, country):
     """Return USD converted to the target country's currency."""
     return amount * rates[country]
@@ -35,7 +40,6 @@ def add_tax(amount, country):
     return amount * (1 + tax[country])
 
 def get_number(prompt):
-    """Return a valid float using a loop (Ch.7)."""
     while True:
         try:
             return float(input(prompt))
@@ -50,9 +54,10 @@ def get_country():
             return c
         print("Not in Ally's Top 10. Try again.")
 
-# -------------------------------
-# Menu actions
-# -------------------------------
+
+# -----------------------------
+# Menu
+# -----------------------------
 
 def convert_only():
     amount = get_number("USD amount: ")
@@ -61,23 +66,29 @@ def convert_only():
     print(f"{amount} USD → {result:.2f} ({country})")
 
 def convert_with_tax():
-    amount = get_number("USD amount (before tax): ")
+    amount = get_number("USD amount (already including US tax): ")
     country = get_country()
 
-    us_taxed = add_tax(amount, "united states")
-    converted = convert(us_taxed, country)
+    # Step 1: amount is already with US tax, so don't add US tax again
+    usd_with_tax = amount
+
+    # Step 2: convert that taxed USD amount to target currency
+    converted = convert(usd_with_tax, country)
+
+    # Step 3: apply target country's tax
     final = add_tax(converted, country)
 
     print(f"Final price in {country}: {final:.2f}")
+
 
 def list_countries():
     print("\nSupported countries:")
     for c in rates:
         print("-", c.title())
 
-# -------------------------------
-# Main loop
-# -------------------------------
+# -----------------------------
+# Loop
+# -----------------------------
 
 def menu():
     print("\n--- Ally's Currency Converter ---")
