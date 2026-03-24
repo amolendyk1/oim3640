@@ -10,4 +10,4 @@ This is my course repository for OIM3640.
 
 ## My Projects
 
-- [First Project](C:\Users\amolendyk1\Desktop\oim3640\projects\project 1)
+- [First Project](C:\Users\amolendyk1\Desktop\oim3640\projects\project 1) - converts currency from USD and includes tax amount
