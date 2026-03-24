@@ -14,7 +14,29 @@ what I asked AI to do:
 - I asked AI to list currency conversion rates but I was unable to get accurate information. Therefore, I used google to look up the top 10 conversion rates.
 
 What I didn't understand in the generated code:
-- I did not understand what someone of the short hand country names were so I had to google that to understand which countnry it is.
+- I did not understand what someone of the short hand country names were so I had to google that to understand which counntry it is.
 
 What I learned:
 - From this experience, I learned that there are a lot of country currency conversion rates so I simplified to only the top 10 rates. 
+
+
+## 2026 March 20
+what I asked AI to do:
+- I asked AI if including a tax function or adding a country to country function is more important. 
+
+What I didn't understand in the generated code:
+- I understood everything and this experience helped me simplfy my app.
+
+What I learned:
+- I was running into complications while writing code and it started to get very complicated to have both of these functions in my code. I learned the since we are currently in the US, it is more important to have a tax feature.
+
+
+## 2026 March 24
+what I asked AI to do:
+- I asked AI to finalize and make the code look more organized.
+
+What I didn't understand in the generated code:
+- At first, I did not understand how to make it so it does not doulbe count tax. AI corrected this and explained it in a way so that it was easy to understand why my code was double counting it. 
+
+What I learned:
+- I learned how to read my code and ensure that it is calculating the correct amount. 
