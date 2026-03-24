@@ -1,0 +1,5 @@
+## What it does 
+My app takes an amount of money from usd and converts it to another currency. The app is called Ally's Top 10 Currency Convertor because all of the locations I chose are places that I have been to or places that I want to go to. The countries include, japan, london, france, netherlands, china, costa rica, greece, germany, united states, italy. There is also a function where you can just converte it to another currency or you can convert it it while also including tax. 
+
+## How does it run 
+First there is a menu bar where the user can decide to just convert, convert with tax, or just look at the countries available in the convertor. The user inputs an amount in USD. Then the app ask what country the user wants it to be converted to. Then it converts the amount based on the option that the user chose. It then returns that amount to the user. 
