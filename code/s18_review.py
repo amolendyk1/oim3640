@@ -26,8 +26,3 @@ try:
     print(f'{name}: {scores[name]}')
 except KeyError:
     print(f'{name} not found')
-
-import requests
-
-response = requests.get('https://oim.108122.xyz/words/random')
-print(response.json())   # a random word!
