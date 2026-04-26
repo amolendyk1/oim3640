@@ -17,3 +17,13 @@ What I didn't understand in the generated code:
 
 What I learned:
 - From this experience, I learned that it is important to seperate code and have different sections of code. It makes the code itself easier to read and I learned that it is important to also inclued relevant variable names. 
+
+## 2026 March 26
+what I asked AI to do:
+- I asked AI to create a comparison table so it would be easier for the user to see the difference in words. Before, it would give all the top 10 twords for each song. I thought this was still important to have but I wanted to make something the more user friendly. 
+
+What I didn't understand in the generated code:
+-  AI put this line of code in and I was confused what the numbers meant and were used for: print(f"{'Song':30} {'Total':>7} {'Unique':>7} {'Ratio':>7}"). 
+
+What I learned:
+- I ended up asking AI what this meant and learned that they are used to control the width of each of the columns. Then > creates a placement or alignment of the text. 
