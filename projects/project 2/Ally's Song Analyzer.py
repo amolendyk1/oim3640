@@ -85,6 +85,41 @@ def compare_vibe(hist):
     best_vibe = max(scores, key=scores.get)
     return best_vibe, scores
 
+def summarize_vibes(results):
+    moods = ["love", "sad", "angry", "happy"]
+
+    # Track the highest scoring song for each mood
+    highest = {mood: ("", -1) for mood in moods}
+
+    # Track overall strongest vibe score
+    overall_best_song = ""
+    overall_best_score = -1
+    overall_best_mood = ""
+
+    for filename, hist in results.items():
+        short_name = filename.split("\\")[-1]
+        _, scores = compare_vibe(hist)
+
+        for mood in moods:
+            if scores[mood] > highest[mood][1]:
+                highest[mood] = (short_name, scores[mood])
+
+            if scores[mood] > overall_best_score:
+                overall_best_score = scores[mood]
+                overall_best_song = short_name
+                overall_best_mood = mood
+
+    print("\n==============================================")
+    print("                VIBE SUMMARY")
+    print("==============================================")
+    for mood in moods:
+        song, score = highest[mood]
+        print(f"Most {mood.upper():6}: {song:30} Score: {score}")
+
+    print("----------------------------------------------")
+    print(f"Highest vibe score overall: {overall_best_song} ({overall_best_mood.upper()}) = {overall_best_score}")
+    print("==============================================")
+
 # ============================================================
 #                     COMPARISON TABLE
 # ============================================================
@@ -129,6 +164,7 @@ def main():
 
     compare_songs(results)
     visualize_vibe_scores(results)
+    summarize_vibes(results)
 
 if __name__ == "__main__":
     main()
