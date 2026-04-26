@@ -37,3 +37,13 @@ What I didn't understand in the generated code:
 
 What I learned:
 - At first, I was comparing the top 10 words of each song but it ended up being confusing and not very helpful. I was also creating graphs for each song but I found it hard to compare each of the songs this way. I learned that it is easier to have everything in one graph and that it is more important to compare the vibes since that is what my focus is for this project. 
+
+## 2026 March 26
+what I asked AI to do:
+- I asked AI to create an additional vibe summary table to compare differnt vibes easier. 
+
+What I didn't understand in the generated code:
+-  I understood everything from this generated code. 
+
+What I learned:
+- When writing my READ.ME, I realized that it was not super clear what the vibe scores were. I had code earlier where it detected it but I did not add in a summary feature to make it clearer. 
