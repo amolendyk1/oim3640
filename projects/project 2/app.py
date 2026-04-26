@@ -1,5 +1,9 @@
 import string 
 
+# ============================================================
+#                 TEXT PROCESSING FUNCTIONS
+# ============================================================
+
 def process_file(filename):
     hist = {}
     fp = open(filename, encoding = "utf-8")
@@ -29,6 +33,12 @@ def print_top(hist, n=10):
     for freq, word in t[:n]:
         print(freq, word)
 
+
+# ============================================================
+#                     VIBE ANALYSIS
+# ============================================================
+
+
 vibes = {"love": ["love", "baby", "heart", "kiss", "feel", "want"],
     "sad": ["cry", "tears", "alone", "missing", "hurt", "pain"],
     "angry": ["fight", "hate", "mad", "wrong", "shout"],
@@ -47,6 +57,10 @@ def compare_vibe(hist):
     best_vibe = max(scores, key=scores.get)
     return best_vibe, scores
 
+# ============================================================
+#                     COMPARISON TABLE
+# ============================================================
+
 def compare_songs(results):
     print("\n==============================================")
     print("              COMPARISON TABLE")
@@ -64,7 +78,11 @@ def compare_songs(results):
         short_name = name.split("\\")[-1][:28]
 
         print(f"{short_name:30} {total:7} {unique:7} {ratio:7.2f} {vibe:>10}")
-        
+
+# ============================================================
+#                          MAIN
+# ============================================================
+       
 def main():
     songs = ["C:\\Users\\amolendyk1\\Desktop\\oim3640\\data\\talking_to_the_moon.txt", "C:\\Users\\amolendyk1\\Desktop\\oim3640\\data\\when_i_was_your_man.txt", "C:\\Users\\amolendyk1\\Desktop\\oim3640\\data\\too_good_to_say_goodbye.txt", "C:\\Users\\amolendyk1\\Desktop\\oim3640\\data\\put_on_a_smile.txt", "C:\\Users\\amolendyk1\\Desktop\\oim3640\\data\\risk_it_all.txt"]
     
@@ -74,8 +92,8 @@ def main():
         results[filename] = hist
 
         vibe, scores = compare_vibe(hist)
+        print("Analyzing:", filename)
         print("Vibe scores:", scores)
-
         print("Total words:", total_words(hist))
         print("Unique words:", unique_words(hist))
         print("Top 10 words:")
