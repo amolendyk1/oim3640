@@ -18,5 +18,4 @@ What I don't Know yet:
 - I am going to focus on 5 songs of bruno mars all from different albums to see the most used words, moods of the song, and most unique words
 - songs: Doo-Woops & Hooligans - Talking to the Moon, Unorthodox Jukebox - Locked out of Heaven, 24k Magic - Too good to Say Goodbye, An Evening with Silk Sonic - Put on a Smile, and The Romantic - Risk it All 
 
-  
-
+- instead of Locked out of heaven I am now doing when I was your man
