@@ -1,4 +1,8 @@
 import string 
+import matplotlib.pyplot as plt
+
+stop_words = {"the","and","to","of","in","a","is","it","that","on","for","with","as",
+    "was","but","be","at","by","an","are","this","from","or","so","if","then"}
 
 # ============================================================
 #                 TEXT PROCESSING FUNCTIONS
@@ -11,7 +15,7 @@ def process_file(filename):
     for line in fp:
         for word in line.split():
             word = word.strip(string.punctuation).lower()
-            if word:
+            if word and word not in stop_words:
                 hist[word] = hist.get(word, 0) + 1
     return hist
 
@@ -33,7 +37,31 @@ def print_top(hist, n=10):
     for freq, word in t[:n]:
         print(freq, word)
 
+# ============================================================
+#                     VISUALIZATION
+# ============================================================
 
+def visualize_vibe_scores(results):
+    plt.figure(figsize=(10, 6))
+
+    moods = ["love", "sad", "angry", "happy"]
+
+    for filename, hist in results.items():
+        short_name = filename.split("\\")[-1]
+
+        # get vibe scores for this song
+        _, scores = compare_vibe(hist)
+        values = [scores[m] for m in moods]
+
+        plt.plot(moods, values, marker='o', label=short_name)
+
+    plt.title("Vibe Scores Across All Songs")
+    plt.xlabel("Vibe Category")
+    plt.ylabel("Score")
+    plt.legend()
+    plt.tight_layout()
+    plt.show()
+    
 # ============================================================
 #                     VIBE ANALYSIS
 # ============================================================
@@ -74,7 +102,6 @@ def compare_songs(results):
         ratio = unique / total if total > 0 else 0
         vibe, scores = compare_vibe(hist)
 
-        # Extract only the filename from the full Windows path
         short_name = name.split("\\")[-1][:28]
 
         print(f"{short_name:30} {total:7} {unique:7} {ratio:7.2f} {vibe:>10}")
@@ -90,6 +117,7 @@ def main():
     for filename in songs:
         hist = process_file(filename)
         results[filename] = hist
+        short_name = filename.split("\\")[-1]
 
         vibe, scores = compare_vibe(hist)
         print("Analyzing:", filename)
@@ -100,6 +128,7 @@ def main():
         print_top(hist, 10)
 
     compare_songs(results)
+    visualize_vibe_scores(results)
 
 if __name__ == "__main__":
     main()
