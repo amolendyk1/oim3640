@@ -1,0 +1,80 @@
+import os
+from networkx import radius
+import requests
+from dotenv import load_dotenv
+load_dotenv()
+
+MAPBOX_TOKEN = os.getenv("MAPBOX_TOKEN")
+MBTA_API_KEY = os.getenv("MBTA_API_KEY")
+
+# ============================================================
+#                     Acquire Latitude and Longitude
+# ============================================================
+
+def get_lat_lng(place_name):
+    url = "https://api.mapbox.com/geocoding/v5/mapbox.places/{place_name}.json".format(place_name=place_name)
+    params = {"access_token": MAPBOX_TOKEN}
+
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    data = response.json ()
+
+    coords = data["features"][0]["geometry"]["coordinates"]
+    lng, lat = coords[0], coords[1]
+    return lat, lng
+
+# ============================================================
+#                     Wheelchair Accessibility
+# ============================================================
+def get_wheelchair_accessibility(code):
+    if code == 0:
+        return "No accessibility information"
+    elif code == 1:
+        return "Wheelchair accessible"
+    elif code == 2:
+        return "Not wheelchair accessible"
+    else:
+        return "Unknown accessibility status"
+
+# ============================================================
+#                     Identify Stops Within Radius
+# ============================================================
+def get_stops_within_radius(lat, lng, radius=800):
+    url = "https://api-v3.mbta.com/stops"
+    params = {"api_key": MBTA_API_KEY, "filter[latitude]": lat, "filter[longitude]": lng, "filter[radius]": radius, "sort": "distance"}
+    response = requests.get(url, params=params)
+    response.raise_for_status()
+    data = response.json()
+
+    stops = []
+    for stop in data["data"]:
+        attrs = stop["attributes"]
+        stops.append({"name": attrs["name"], "distance": attrs["distance"], "wheelchair": wheelchair_status(attrs["wheelchair_boarding"])})
+
+    return stops
+
+# ============================================================
+#                     Main 
+# ============================================================
+
+def find_stop_near(place_name, radius=800):
+    lat, lng = get_lat_lng(place_name)
+    stops = get_stops_within_radius(lat, lng, radius)
+    return lat, lng, stops
+
+def main():
+    place_name = input("Enter a location: ")
+    radius = 800
+
+    lat, lng, stops = find_stop_near(place_name, radius)
+
+    print(f"Latitude: {lat}, Longitude: {lng}")
+    print(f"Stops within {radius} meters of {place_name}:")
+    
+    for stop in stops:
+        print(f"- {stop['name']} ({stop['distance']:.2f} meters away, {stop['wheelchair']})")
+    
+    print("Thank you for using Ally's MBTA Stops Locator!")
+
+if __name__ == "__main__":
+    main()
