@@ -1,0 +1,8 @@
+## How it works 
+- This app helps you find the closest MBTA stop to any place you type in. When you enter a location, the app sends it to the Mapbox API, which turns the place name into latitude and longitude. Then those coordinates are sent to the MBTA API, which returns all the nearby transit stops within the radius you chose. Each stop includes its name, distance, and whether it is wheelchair accessible. The app picks the closest stop and shows it on the page along with an interactive map. The map is centered on the place you searched for, with a blue marker showing your location and green or red markers showing nearby MBTA stops depending on accessibility. The code is organized so that all the API work happens in mbta.py, the web routes are in app.py, and the user interface and map are in stop.html.
+
+## Setup Instructions 
+- To run the app, first install the required Python packages using the requirements.txt file. Then create a .env file in the main project folder and add your Mapbox and MBTA API keys. This file should not be uploaded to GitHub, so make sure .env is listed in your .gitignore. After that, start the app by running python app.py in your terminal. Once it’s running, open your browser and go to http://127.0.0.1:5000/. From there, you can type in any place name, pick a search radius, and the app will show you the nearest MBTA stop along with a map of all stops nearby.
+
+C:\Users\amolendyk1\Desktop\oim3640\data\Screenshot 2026-04-26 212927.png 
+C:\Users\amolendyk1\Desktop\oim3640\data\Screenshot 2026-04-26 214025.png 
