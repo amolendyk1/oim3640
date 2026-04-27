@@ -7,10 +7,6 @@ load_dotenv()
 MAPBOX_TOKEN = os.getenv("MAPBOX_TOKEN")
 MBTA_API_KEY = os.getenv("MBTA_API_KEY")
 
-# ============================================================
-#                     Acquire Latitude and Longitude
-# ============================================================
-
 def get_lat_lng(place_name):
     url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{place_name}.json"
     params = {"access_token": MAPBOX_TOKEN}
@@ -23,10 +19,6 @@ def get_lat_lng(place_name):
     lng, lat = coords[0], coords[1]
     return lat, lng
 
-# ============================================================
-#                     Wheelchair Accessibility
-# ============================================================
-
 def get_wheelchair_accessibility(code):
     if code == 0:
         return "No accessibility information"
@@ -36,10 +28,6 @@ def get_wheelchair_accessibility(code):
         return "Not wheelchair accessible"
     else:
         return "Unknown accessibility status"
-
-# ============================================================
-#                     Identify Stops Within Radius
-# ============================================================
 
 def get_stops_within_radius(lat, lng, radius=800):
     url = "https://api-v3.mbta.com/stops"
@@ -60,15 +48,13 @@ def get_stops_within_radius(lat, lng, radius=800):
         attrs = stop["attributes"]
         stops.append({
             "name": attrs["name"],
+            "lat": attrs["latitude"],
+            "lng": attrs["longitude"],
             "distance": attrs.get("distance"),
             "wheelchair": get_wheelchair_accessibility(attrs["wheelchair_boarding"])
         })
 
     return stops
-
-# ============================================================
-#                     Main Function
-# ============================================================
 
 def find_stop_near(place_name, radius=800):
     lat, lng = get_lat_lng(place_name)

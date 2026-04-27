@@ -1,7 +1,18 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>MBTA Result</title>
+    <title>MBTA Results</title>
+
+    <!-- Mapbox CSS -->
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+
+    <style>
+        #map {
+            width: 600px;
+            height: 400px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Results for "{{ place }}"</h1>
@@ -9,10 +20,42 @@
     {% if error %}
         <p style="color:red;">{{ error }}</p>
     {% else %}
-        <p><strong>Nearest Stop:</strong> {{ stop_name }}</p>
-        <p><strong>Wheelchair Accessible:</strong> {{ wheelchair }}</p>
+        <p><strong>Nearest Stop:</strong> {{ nearest_name }}</p>
+        <p><strong>Wheelchair Accessible:</strong> {{ nearest_wheelchair }}</p>
+
+        <div id="map"></div>
+
+        <!-- Mapbox JS -->
+        <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+        <script>
+            mapboxgl.accessToken = "{{ mapbox_token }}";
+
+            const map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v12',
+                center: [{{ lng }}, {{ lat }}],
+                zoom: 14
+            });
+
+            // Marker for searched location
+            new mapboxgl.Marker({ color: "blue" })
+                .setLngLat([{{ lng }}, {{ lat }}])
+                .setPopup(new mapboxgl.Popup().setText("Search location"))
+                .addTo(map);
+
+            // Markers for all stops
+            const stops = {{ stops_json | safe }};
+
+            stops.forEach(stop => {
+                new mapboxgl.Marker({ color: stop.color })
+                    .setLngLat([stop.lng, stop.lat])
+                    .setPopup(new mapboxgl.Popup().setText(stop.name))
+                    .addTo(map);
+            });
+        </script>
     {% endif %}
 
+    <br><br>
     <a href="/">Search again</a>
 </body>
 </html>
