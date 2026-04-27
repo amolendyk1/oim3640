@@ -1,7 +1,9 @@
+from math import dist
 import os
-from networkx import radius
+from tracemalloc import stop
 import requests
 from dotenv import load_dotenv
+
 load_dotenv()
 
 MAPBOX_TOKEN = os.getenv("MAPBOX_TOKEN")
@@ -12,7 +14,7 @@ MBTA_API_KEY = os.getenv("MBTA_API_KEY")
 # ============================================================
 
 def get_lat_lng(place_name):
-    url = "https://api.mapbox.com/geocoding/v5/mapbox.places/{place_name}.json".format(place_name=place_name)
+    url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{place_name}.json"
     params = {"access_token": MAPBOX_TOKEN}
 
     response = requests.get(url, params=params)
@@ -42,6 +44,7 @@ def get_wheelchair_accessibility(code):
 def get_stops_within_radius(lat, lng, radius=800):
     url = "https://api-v3.mbta.com/stops"
     params = {"api_key": MBTA_API_KEY, "filter[latitude]": lat, "filter[longitude]": lng, "filter[radius]": radius, "sort": "distance"}
+    
     response = requests.get(url, params=params)
     response.raise_for_status()
     data = response.json()
@@ -49,8 +52,7 @@ def get_stops_within_radius(lat, lng, radius=800):
     stops = []
     for stop in data["data"]:
         attrs = stop["attributes"]
-        stops.append({"name": attrs["name"], "distance": attrs["distance"], "wheelchair": wheelchair_status(attrs["wheelchair_boarding"])})
-
+        stops.append({"name": attrs["name"], "distance": attrs.get("distance"), "wheelchair": get_wheelchair_accessibility(attrs["wheelchair_boarding"])})
     return stops
 
 # ============================================================
@@ -68,13 +70,19 @@ def main():
 
     lat, lng, stops = find_stop_near(place_name, radius)
 
-    print(f"Latitude: {lat}, Longitude: {lng}")
+    print(f"\nLatitude: {lat}, Longitude: {lng}")
     print(f"Stops within {radius} meters of {place_name}:")
     
     for stop in stops:
-        print(f"- {stop['name']} ({stop['distance']:.2f} meters away, {stop['wheelchair']})")
+        dist = stop["distance"]
+        if dist is None:
+            dist_str = "distance unavailable"
+        else:
+            dist_str = f"{dist:.2f} meters away"
+
+        print(f"- {stop['name']} ({dist_str}, {stop['wheelchair']})")
     
-    print("Thank you for using Ally's MBTA Stops Locator!")
+    print("\nThank you for using Ally's MBTA Stops Locator!")
 
 if __name__ == "__main__":
     main()
