@@ -21,6 +21,7 @@ def index():
 
             nearest = stops[0]
 
+            # Prepare stop data for map
             stops_json = json.dumps([
                 {
                     "name": s["name"],
@@ -47,7 +48,8 @@ def index():
                                    place=place,
                                    error=str(e))
 
-    return render_template("index.html")
+    # First page load → show form only
+    return render_template("stop.html")
 
 
 if __name__ == "__main__":
